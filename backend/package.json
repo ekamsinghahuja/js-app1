@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon index.js",
+    "server": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
