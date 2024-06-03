@@ -1,0 +1,79 @@
+.header {
+    height: 34vw;
+    margin: 30px auto;
+    overflow: hidden; /* Ensure the slider doesn't overflow */
+    background: url('header_img.png') no-repeat;
+    background-size:contain;
+    position: relative;
+  }
+  
+  .header-content {
+    position: absolute; /* Change position to relative */
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.5vw;
+    max-width: 50%;
+    bottom: 10%;
+    left: 6vw;
+    animation: fadeIn 3s;
+  }
+  
+  .slider {
+    display: flex;
+    width: 300%; /* Adjust based on the number of images */
+  }
+  
+  .slider img {
+    width: 33.333%; /* Adjust based on the number of images */
+    flex-shrink: 0;
+  }
+  
+  .header-content h2 {
+    font-weight: 500;
+    color: white;
+    font-size: max(4.5vw,22px);
+  }
+  
+  .header-content p {
+    color: white;
+    font-size: 1vw;
+  }
+  
+  .header-content button {
+    border: none;
+    color: chocolate;
+    font-weight: 500px;
+    padding: 1vw 2.3vw;
+    background-color: white;
+    font-size: max(1vw, 13px);
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  
+  .header-content button:hover {
+    background-color: chocolate;
+    color: white;
+    border: 2px solid chocolate;
+  }
+  
+  @media (max-width: 1050px) {
+    .header-content {
+      max-width: 45%;
+      bottom: 50%;
+    }
+  }
+  
+  @media (max-width: 750px) {
+    .header-content {
+      max-width: 65%;
+      bottom: 60%;
+    }
+    .header-content p {
+      display: none;
+    }
+    .header-content button {
+      padding: 2vw 4vw;
+    }
+  }
+  
