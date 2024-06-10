@@ -20,7 +20,7 @@ const Loginp = ({ setSL }) => {
         event.preventDefault();
         let newUrl = Url;
         if(curr=="Log In"){
-            newUrl = "http://localhost:4000/api/user/login";
+            newUrl = "https://js-app1.onrender.com/api/user/login";
         }
         else{
             newUrl += "/api/user/register";
