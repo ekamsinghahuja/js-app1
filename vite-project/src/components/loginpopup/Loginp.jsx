@@ -20,7 +20,8 @@ const Loginp = ({ setSL }) => {
         event.preventDefault();
         let newUrl = Url;
         if(curr=="Log In"){
-            newUrl = "https://js-app1.onrender.com/api/user/login";
+
+            newUrl += "/api/user/login";
         }
         else{
             newUrl += "/api/user/register";
@@ -31,12 +32,15 @@ const Loginp = ({ setSL }) => {
             console.log(response.data)
 
             const token = response.data.token;
+            console.log(response);
+            console.log(token);
 
             setToken(token); // Update token state/context
             localStorage.setItem("token", token); // Store token in local storage
             setSL(false);
         }
         else{
+            alert("something went wrong")
             console.error("Login error:", error);
         }
     }

@@ -37,10 +37,10 @@ const registerUser = async (req, res) => {
             return res.json({success:true,message:"user already exists"});
         }
         if(!validator.isEmail(email)){
-            return res.json({success:true,message:"please give valid email"});
+            return res.json({success:false,message:"please give valid email"});
         }
-        if(password.length<8){
-            return res.json({success:true,message:"please enter better password"});
+        if(password.length<5){
+            return res.json({success:false,message:"please enter better password"});
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password,salt);
