@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets'
 import axios from 'axios'
 import { ToastContainer, toast} from 'react-toastify';
 const Additems = () => {
-    const url = "http://localhost:4000" ;
+    const url = "https://js-app1.onrender.com" ;
     const [image,setimg] = useState(false)
     const [data,setdata] = useState({
         name:"",
