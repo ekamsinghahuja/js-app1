@@ -1,52 +1,47 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './loginp.css';
 import { assets } from '../../assets/assets';
-import { useContext } from 'react';
 import { StoreContext } from '../../context/SStoreContext';
-import axios from 'axios'
+import axios from 'axios';
 
 const Loginp = ({ setSL }) => {
-    const { Url,setToken, } = useContext(StoreContext)
+    const { Url, setToken } = useContext(StoreContext);
 
-   
-    
     const [curr, setCurrState] = useState('Sign Up');
     const [data, setData] = useState({
         name: "",
-        email: "", 
+        email: "",
         password: "",
     });
-    const onLogin= async (event)=>{
+
+    const onLogin = async (event) => {
         event.preventDefault();
         let newUrl = Url;
-        if(curr=="Log In"){
-
+        if (curr === "Log In") {
             newUrl += "/api/user/login";
-        }
-        else{
+        } else {
             newUrl += "/api/user/register";
         }
-        const response = await axios.post(newUrl,data);
-
-        if(response.data.success){
-            console.log(response.data)
-
-            const token = response.data.token;
-            console.log(response);
-            console.log(token);
-
-            setToken(token); // Update token state/context
-            localStorage.setItem("token", token); // Store token in local storage
-            setSL(false);
-        }
-        else{
-            alert("something went wrong")
+        try {
+            const response = await axios.post(newUrl, data);
+            if (response.data.success) {
+                const token = response.data.token;
+                setToken(token);
+                localStorage.setItem("token", token);
+                setSL(false);
+                document.body.classList.remove('login-popup-active');
+                window.location.reload(); // Refresh the page after login
+            } else {
+                alert("Something went wrong");
+            }
+        } catch (error) {
             console.error("Login error:", error);
+            alert("Something went wrong");
         }
-    }
+    };
 
     const onChangeh = (event) => {
-        const name = event.target.name; 
+        const name = event.target.name;
         const value = event.target.value;
         setData(prevData => ({ ...prevData, [name]: value }));
     };
@@ -55,12 +50,22 @@ const Loginp = ({ setSL }) => {
         console.log(curr);
     }, [curr]);
 
+    useEffect(() => {
+        document.body.classList.add('login-popup-active');
+        return () => {
+            document.body.classList.remove('login-popup-active');
+        };
+    }, []);
+
     return (
         <div className='login-popup'>
             <form onSubmit={onLogin} className="login-popup-container">
                 <div className="login-popup-title">
                     <h2>{curr}</h2>
-                    <img onClick={() => setSL(false)} src={assets.cross_icon} alt="" />
+                    <img onClick={() => {
+                        setSL(false);
+                        document.body.classList.remove('login-popup-active');
+                    }} src={assets.cross_icon} alt="Close" />
                 </div>
                 <div className="login-popup-inputs">
                     {curr === "Sign Up" && <input name="name" onChange={onChangeh} type="text" placeholder='Your Name' required />}
@@ -69,7 +74,7 @@ const Loginp = ({ setSL }) => {
                 </div>
                 <button type='submit'>{curr === "Sign Up" ? "Create Account" : "Log In"}</button>
                 <div className="login-popup-condition">
-                    <input type="checkbox" />
+                    <input type="checkbox" required />
                     <p>By continuing I agree to the terms of use and privacy policy</p>
                 </div>
                 {curr === "Sign Up"
@@ -78,6 +83,6 @@ const Loginp = ({ setSL }) => {
             </form>
         </div>
     );
-}
+};
 
 export default Loginp;

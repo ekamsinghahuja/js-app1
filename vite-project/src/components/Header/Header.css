@@ -1,79 +1,114 @@
 .header {
-    height: 34vw;
-    margin: 30px auto;
-    overflow: hidden; /* Ensure the slider doesn't overflow */
-    background: url('header_img.png') no-repeat;
-    background-size:contain;
-    position: relative;
-  }
-  
+  height: 34vw;
+  margin: 30px auto;
+  overflow: hidden;
+  background: url('header_img.png') no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.header-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 1.5vw;
+  max-width: 50%;
+  bottom: 10%;
+  left: 6vw;
+  animation: fadeIn 3s;
+}
+
+.slider {
+  display: flex;
+  width: 300%; /* Adjust based on the number of images */
+}
+
+.slider img {
+  width: 33.333%; /* Adjust based on the number of images */
+  flex-shrink: 0;
+}
+
+.header-content h2 {
+  font-weight: 500;
+  color: white;
+  font-size: max(4.5vw, 22px);
+}
+
+.header-content p {
+  color: white;
+  font-size: 1vw;
+}
+
+.header-content button {
+  border: none;
+  color: chocolate;
+  font-weight: 500;
+  padding: 1vw 2.3vw;
+  background-color: white;
+  font-size: max(1vw, 13px);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.header-content button:hover {
+  background-color: chocolate;
+  color: white;
+  border: 2px solid chocolate;
+}
+
+/* Media Queries for better responsiveness */
+@media (max-width: 1050px) {
   .header-content {
-    position: absolute; /* Change position to relative */
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 1.5vw;
-    max-width: 50%;
-    bottom: 10%;
-    left: 6vw;
-    animation: fadeIn 3s;
-  }
-  
-  .slider {
-    display: flex;
-    width: 300%; /* Adjust based on the number of images */
-  }
-  
-  .slider img {
-    width: 33.333%; /* Adjust based on the number of images */
-    flex-shrink: 0;
-  }
-  
-  .header-content h2 {
-    font-weight: 500;
-    color: white;
-    font-size: max(4.5vw,22px);
-  }
-  
-  .header-content p {
-    color: white;
-    font-size: 1vw;
-  }
-  
-  .header-content button {
-    border: none;
-    color: chocolate;
-    font-weight: 500px;
-    padding: 1vw 2.3vw;
-    background-color: white;
-    font-size: max(1vw, 13px);
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  
-  .header-content button:hover {
-    background-color: chocolate;
-    color: white;
-    border: 2px solid chocolate;
-  }
-  
-  @media (max-width: 1050px) {
-    .header-content {
       max-width: 45%;
-      bottom: 50%;
-    }
+      bottom: 20%;
+      left: 5vw;
   }
-  
-  @media (max-width: 750px) {
-    .header-content {
+}
+
+@media (max-width: 750px) {
+  .header {
+      height: 50vw;
+  }
+
+  .header-content {
       max-width: 65%;
-      bottom: 60%;
-    }
-    .header-content p {
-      display: none;
-    }
-    .header-content button {
-      padding: 2vw 4vw;
-    }
+      bottom: 25%;
+      left: 4vw;
   }
-  
+
+  .header-content h2 {
+      font-size: max(5vw, 20px);
+  }
+
+  .header-content p {
+      display: none;
+  }
+
+  .header-content button {
+      padding: 2vw 4vw;
+      font-size: max(1.5vw, 13px);
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+      height: 60vw;
+  }
+
+  .header-content {
+      max-width: 75%;
+      bottom: 30%;
+      left: 3vw;
+      gap: 2vw;
+  }
+
+  .header-content h2 {
+      font-size: max(6vw, 18px);
+  }
+
+  .header-content button {
+      padding: 3vw 5vw;
+      font-size: max(2vw, 12px);
+  }
+}
